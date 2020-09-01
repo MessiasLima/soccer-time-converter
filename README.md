@@ -1,5 +1,6 @@
 ![Build and deployment](https://github.com/MessiasLima/soccer-time-converter/workflows/Build%20and%20deployment/badge.svg)
 [![codecov](https://codecov.io/gh/MessiasLima/soccer-time-converter/branch/master/graph/badge.svg)](https://codecov.io/gh/MessiasLima/soccer-time-converter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/de9495caef8360fb34a0/maintainability)](https://codeclimate.com/github/MessiasLima/soccer-time-converter/maintainability)
 [![License](https://img.shields.io/github/license/MessiasLima/soccer-time-converter)](https://img.shields.io/github/license/MessiasLima/soccer-time-converter)
 
 # ⚽ Soccer time converter
