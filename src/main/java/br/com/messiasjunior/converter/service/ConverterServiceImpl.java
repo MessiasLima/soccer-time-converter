@@ -12,6 +12,10 @@ public class ConverterServiceImpl implements ConverterService {
 	private static final Duration DURATION_REGULAR_FIRST_HALF = Duration.ofMinutes(45);
 	private static final Duration DURATION_REGULAR_SECOND_HALF = Duration.ofMinutes(90);
 
+	public static final String EXTRA_TIME_DELIMITER = " +";
+	public static final String SECONDS_DELIMITER = ":";
+	public static final String MATCH_DURATION_DELIMITER = " - ";
+
 	@Override
 	public String convertMatchTime(String matchTime) throws InvalidPeriodException, InvalidTimeException {
 		if (!isMatchTimeValid(matchTime)) {
@@ -50,11 +54,11 @@ public class ConverterServiceImpl implements ConverterService {
 		}
 
 		if (!extraTime.isZero() || matchPeriod == MatchPeriod.FULL_TIME) {
-			builder.append(" +");
+			builder.append(EXTRA_TIME_DELIMITER);
 			builder.append(durationToString(extraTime));
 		}
 
-		builder.append(" - ");
+		builder.append(MATCH_DURATION_DELIMITER);
 		builder.append(matchPeriod.name());
 
 		return builder.toString();
@@ -91,11 +95,11 @@ public class ConverterServiceImpl implements ConverterService {
 			seconds += 1; // Rounding up
 		}
 
-		return String.format("%02d", minutes) + ":" + String.format("%02d", seconds);
+		return String.format("%02d", minutes) + SECONDS_DELIMITER + String.format("%02d", seconds);
 	}
 
 	private Duration parseTime(String timeString) {
-		var timeArray = timeString.split(":");
+		var timeArray = timeString.split(SECONDS_DELIMITER);
 		var minutes = Integer.parseInt(timeArray[0]);
 		var seconds = Double.parseDouble(timeArray[1]);
 		var timeInMillis = ((Double) (((minutes * 60) + seconds) * 1000)).longValue(); // Convert to millis
