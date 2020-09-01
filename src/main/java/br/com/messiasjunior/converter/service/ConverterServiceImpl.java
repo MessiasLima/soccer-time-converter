@@ -35,19 +35,11 @@ public class ConverterServiceImpl implements ConverterService {
 
 		switch (matchPeriod) {
 			case FIRST_HALF :
-				if (matchDuration.minus(DURATION_REGULAR_FIRST_HALF).isNegative()) {
-					builder.append(durationToString(matchDuration));
-				} else {
-					builder.append(durationToString(DURATION_REGULAR_FIRST_HALF));
-				}
+				builder.append(durationToString(normalizeMatchDuration(matchDuration, DURATION_REGULAR_FIRST_HALF)));
 				break;
 			case SECOND_HALF :
 			case FULL_TIME :
-				if (matchDuration.minus(DURATION_REGULAR_SECOND_HALF).isNegative()) {
-					builder.append(durationToString(matchDuration));
-				} else {
-					builder.append(durationToString(DURATION_REGULAR_SECOND_HALF));
-				}
+				builder.append(durationToString(normalizeMatchDuration(matchDuration, DURATION_REGULAR_SECOND_HALF)));
 				break;
 			default :
 				builder.append(durationToString(matchDuration));
@@ -62,6 +54,14 @@ public class ConverterServiceImpl implements ConverterService {
 		builder.append(matchPeriod.name());
 
 		return builder.toString();
+	}
+
+	private Duration normalizeMatchDuration(Duration matchDuration, Duration regularMatchPeriodDuration) {
+		if (matchDuration.minus(regularMatchPeriodDuration).isNegative()) {
+			return matchDuration;
+		} else {
+			return regularMatchPeriodDuration;
+		}
 	}
 
 	private Duration getExtraTime(MatchPeriod matchPeriod, Duration duration) {
@@ -79,11 +79,7 @@ public class ConverterServiceImpl implements ConverterService {
 				return Duration.ZERO;
 		}
 
-		if (extraTime.isNegative()) {
-			return Duration.ZERO;
-		} else {
-			return extraTime;
-		}
+		return extraTime.isNegative() ? Duration.ZERO : extraTime;
 	}
 
 	private String durationToString(Duration duration) {
