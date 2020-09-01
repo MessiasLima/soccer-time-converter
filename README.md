@@ -16,9 +16,9 @@ You also need the [Gradle build tool](https://gradle.org/). You can also use the
 
 ## 🚀 Running the application
 
-I developed this application using Gradle build tool and the Spring Boot framework. To run the application you need to:
+I developed this application using the Gradle build tool and the Spring Boot framework. To run the application you need to:
 
-1. On command line (or on your favorite Java IDE) run `bootRun` gradle task.
+1. On command line (or on your favourite Java IDE) run `bootRun` gradle task.
 
     ```
     ./gradlew bootRun
@@ -28,14 +28,14 @@ I developed this application using Gradle build tool and the Spring Boot framewo
 
     - You can access http://localhost:8080/swagger-ui.html to see the swagger interface to the service
 
-1. To convert a value, you need to execute a `GET` request to http://localhost:8080/converter passing a input on `matchTime` query parameter.
+1. To convert a value, you need to execute a `GET` request to http://localhost:8080/converter passing an input on `matchTime` query parameter.
 
 ```
 Input: [H1] 45:00.001
-URL: http://localhost:8080/converter?matchTime=%5BH1%5D%203%3A07.513
+URL: http://localhost:8080/converter?matchTime=%5BH1%5D%2045%3A00.001
 ```
 
-**_Note: the input must be url encoded_**
+**_Note: the input must be URL encoded_**
 
 **_Note 2: you don't need to worry about the input encoding if you are using swagger-ui to make the request._**
 
@@ -63,7 +63,7 @@ To build the application you just need to run the `build` task.
 -   The [JaCoCo test coverage verification](https://docs.gradle.org/current/userguide/jacoco_plugin.html) is configured to ensure that at least 80% of the lines and branches are covered by tests.
 -   I configured [Netris commit lint plugin](https://plugins.gradle.org/plugin/ru.netris.commitlint) to lint the commit messages to meet the [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 -   [Gradle Git Hook](https://github.com/STAR-ZERO/gradle-githook) is being used to integrate the code style and commit message verification on git hooks.
--   The pull request or push in master branch will trigger a pipeline automation that build the application (run tests and check style) and deploy it on [Heroku](https://www.heroku.com/home)
+-   The pull request or push in master branch will trigger a pipeline automation that builds the application (run tests and check style) and deploy it on [Heroku](https://www.heroku.com/home)
 
 ## License
 
