@@ -80,6 +80,13 @@ tasks.check {
     dependsOn(tasks.jacocoTestCoverageVerification)
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
 githook {
     failOnMissingHooksDir = false
     createHooksDirIfNotExist = false
