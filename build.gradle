@@ -6,6 +6,7 @@ plugins {
     id 'ru.netris.commitlint' version '1.2'
     id 'com.star-zero.gradle.githook' version '1.2.1'
     id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.10.2'
 }
 
 group = 'br.com.messiasjunior'
@@ -78,6 +79,17 @@ tasks.jacocoTestCoverageVerification {
 
 tasks.check {
     dependsOn(tasks.jacocoTestCoverageVerification)
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+coveralls {
+    jacocoReportPath 'build/reports/jacoco/test/jacocoTestReport.xml'
 }
 
 githook {

@@ -28,6 +28,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Upload code coverage report
+        run: ./gradlew coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
   deploy:
     if: ${{ github.event_name == 'push' }}
     needs: build
